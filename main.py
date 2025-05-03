@@ -43,7 +43,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Bot credentials from environment variables (Render compatible)
 API_ID = int(os.environ.get("API_ID", 24473318))
 API_HASH = os.environ.get("API_HASH", "e7dd0576c5ac0ff8f90971d6bb04c8f5")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "8034069514:AAHUBpzSCq41jPwsJkDbXuEoVC_yCxzyuw0")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8047648005:AAEac3cjeOixVPmJc8mBk03jR7oiyz3GpGA")
 
 # Initialize Bot Globally (IMPORTANT FIX)
 bot = Client("bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
@@ -56,7 +56,7 @@ def home():
     return "Bot is running!"
 
 def run_flask():
-    app.run(host="0.0.0.0", port=1000) #Use 8080 Port here, if you're deploying it on koyeb
+    app.run(host="0.0.0.0", port=8080) #Use 8080 Port here, if you're deploying it on koyeb
     
 
 image_list = [
@@ -864,7 +864,7 @@ async def process_cpwp(bot: Client, m: Message, user_id: int):
                 if hash_match:
                     token = hash_match.group(1)
                     
-                    async with session.get(f"https://api.classplusapp.com/v2/course/preview/similar/{token}?limit=20", headers=headers) as response:
+                    async with session.get(f"https://api.classplusapp.com/v2/course/preview/similar/{token}?limit=50", headers=headers) as response:
                         if response.status == 200:
                             res_json = await response.json()
                             courses = res_json.get('data', {}).get('coursesData', [])
